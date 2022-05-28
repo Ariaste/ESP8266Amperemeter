@@ -1,9 +1,19 @@
 #include <Arduino.h>
 
+float voltage() {
+  return (analogRead(A0) / 1024.0) * 3.3;
+}
+
+float current() {
+  return analogRead(A0) * 3.3;
+}
+
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println(" ");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  Serial.printf("\rSpannung an LED: %.2f V, Stromverbrauch: %.2f mA", voltage(), current());
+  delay(100);
 }
